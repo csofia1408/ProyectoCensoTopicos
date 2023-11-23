@@ -27,7 +27,7 @@ const TuComponente = () => {
           <li key={respondent.id}>
             <p>ID: {respondent.id}</p>
             <p>Teléfono: {respondent.phone_number}</p>
-            <p>pregunta: {respondent.phone_number}</p>
+            <p>numero: {respondent.phone_number}</p>
             
             <ul>
               

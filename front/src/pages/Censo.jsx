@@ -1,20 +1,20 @@
     import Layout from '../components/layout';
 
     const censoIncentives = [
+        {
+            name: 'Official Approval Granted',
+            imageSrc: 'https://tailwindui.com/img/ecommerce/icons/icon-warranty-simple.svg',
+            description: "Electronic Census System Endorsed by the Bolivian Government.",
+        },
     {
-        name: 'Free shipping',
-        imageSrc: 'https://tailwindui.com/img/ecommerce/icons/icon-shipping-simple.svg',
-        description: "It's not actually free; we just price it into the products. Someone's paying for it, and it's not us.",
-    },
-    {
-        name: '10-year warranty',
+        name: 'Empowering Progress',
         imageSrc: 'https://tailwindui.com/img/ecommerce/icons/icon-warranty-simple.svg',
-        description: "If it breaks in the first 10 years, we'll replace it. After that, you're on your own though.",
+        description: "Department of Statistics Officials Applaud the Adoption of the Electronic Census System for Enhanced Data Accuracy and Efficiency.",
     },
     {
-        name: 'Exchanges',
-        imageSrc: 'https://tailwindui.com/img/ecommerce/icons/icon-exchange-simple.svg',
-        description: "If you don't like it, trade it to one of your friends for something of theirs. Don't send it here though.",
+        name: 'Ensuring Data Security',
+        imageSrc: 'https://tailwindui.com/img/ecommerce/icons/icon-warranty-simple.svg',
+        description: "The Electronic Census System Upholds Robust Measures to Safeguard Information for Bolivian Citizens.",
     },
     ];
 
@@ -29,9 +29,8 @@
         We built our business on customer service
     </h2>
     <p className="mt-4 text-gray-500">
-        At the beginning at least, but then we realized we could make a lot more money if we kinda stopped caring
-        about that. Our new strategy is to write a bunch of things that look really good in the headlines, then
-        clarify in the small print but hope people dont actually read it.
+        
+The Electronic Census System is a cutting-edge platform designed to streamline and modernize the census-taking process. Our system revolutionizes the traditional approach to data collection by providing an efficient and user-friendly interface for respondents. With secure and convenient online access, individuals can easily and accurately submit their census information. 
     </p>
     <br></br>
 </div>

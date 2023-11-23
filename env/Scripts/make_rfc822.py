@@ -1,4 +1,4 @@
-#!C:\Users\csofi\Documents\ProyectoTopicosCenso\ECS_project\env\Scripts\python.exe
+#!C:\Users\Victo\Downloads\ECS\ProyectoCensoTopicos\env\Scripts\python.exe
 # coding: utf-8
 
 """

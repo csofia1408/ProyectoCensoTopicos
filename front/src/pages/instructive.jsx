@@ -5,11 +5,11 @@
 
     const posts = [
     {
-        title: 'Boost your conversion rate',
+        title: 'How to use the online census system',
         href: '#',
         category: { name: 'Article', href: '#' },
         description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto accusantium praesentium eius, ut atque fuga culpa, similique sequi cum eos quis dolorum.',
+        'The online census system facilitates the electronic completion of the census questionnaire through a user-friendly web interface, streamlining the process of collecting demographic information and promoting efficiency in population data collection.',
         date: 'Mar 16, 2020',
         datetime: '2020-03-16',
         imageUrl:
@@ -23,11 +23,11 @@
         },
     },
     {
-        title: 'How to use search engine optimization to drive sales',
+        title: 'How to fill out your form correctly',
         href: '#',
         category: { name: 'Video', href: '#' },
         description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit facilis asperiores porro quaerat doloribus, eveniet dolore. Adipisci tempora aut inventore optio animi., tempore temporibus quo laudantium.',
+        'To use the online census system, provide accurate and complete information in the form following the given instructions. Ensure all required fields are filled out correctly and submit the form within the specified deadline.',
         date: 'Mar 10, 2020',
         datetime: '2020-03-10',
         imageUrl:
@@ -41,11 +41,11 @@
         },
     },
     {
-        title: 'Improve your customer experience',
+        title: 'How to answer the different questions.',
         href: '#',
-        category: { name: 'Case Study', href: '#' },
+        category: { name: 'Article', href: '#' },
         description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint harum rerum voluptatem quo recusandae magni placeat saepe molestiae, sed excepturi cumque corporis perferendis hic.',
+        'Answer each question in the online census form accurately and truthfully based on your personal information. Provide the required details for each question, following any instructions or guidelines provided.',
         date: 'Feb 12, 2020',
         datetime: '2020-02-12',
         imageUrl:
@@ -70,7 +70,7 @@
             <div className="text-center">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">From the blog</h2>
             <p className="mx-auto mt-3 max-w-2xl text-xl text-gray-500 sm:mt-4">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa libero labore natus atque, ducimus sed.
+            This section is dedicated to answering your general questions.
             </p>
             </div>
             <div className="mx-auto mt-12 grid max-w-lg gap-5 lg:max-w-none lg:grid-cols-3">

@@ -30,10 +30,12 @@ class CensusForm(models.Model):
 
     def __str__(self):
         return f"Census Form #{self.id}"
+    
+
 
 class Person(models.Model):
     # Relación con el formulario
-    census_form = models.ForeignKey(CensusForm, on_delete=models.CASCADE, related_name='people')
+    census_form = models.ManyToManyField(CensusForm, related_name='people')
 
     # Pregunta 5
     first_name = models.CharField(max_length=255)

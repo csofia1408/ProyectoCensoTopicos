@@ -13,15 +13,13 @@ class PersonSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class CensusFormSerializer(serializers.ModelSerializer):
-    people = PersonSerializer(many=True)
+    #people = PersonSerializer(many=True)
 
     class Meta:
         model = CensusForm
         fields = '__all__'
 
     def create(self, validated_data):
-        people_data = validated_data.pop('people')
+        print("testtttt",validated_data)
         census_form = CensusForm.objects.create(**validated_data)
-        for person_data in people_data:
-            Person.objects.create(census_form=census_form, **person_data)
         return census_form

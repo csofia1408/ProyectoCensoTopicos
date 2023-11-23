@@ -1,50 +1,36 @@
 import { useState } from 'react';
-
+import { getRespondent, createRespondent } from '../api/form.api'
 const Census = () => {
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState(
+        {
         question1: '',
-        additionalPeople: [],
-        housingType: '',
-        phoneNumber: '',
-        people: [
-            {
-                id: 1,
-                firstName: '',
-                lastName: '',
-                sex: '',
-                hispanicOrigin: '',
-                hispanicOriginText: '',
-                age: '',
-                birthMonth: '',
-                birthDay: '',
-                birthYear: '',
-            },
-        ],
+        additional_people: false,
+        housing_type: '',
+        phone_number: '',
     });
 
-    const handleChange = (e, personId) => {
+    const handleChange = (e) => {
         const { name, value } = e.target;
 
-        if (name === 'question1' || name === 'additionalPeople' || name === 'housingType' || name === 'phoneNumber') {
+        if (name === 'question1' || name === 'additional_people' || name === 'housing_type' || name === 'phone_number') {
             setFormData((prevData) => ({
                 ...prevData,
                 [name]: value,
             }));
-        } else {
-            setFormData((prevData) => ({
-                ...prevData,
-                people: prevData.people.map((person) =>
-                    person.id === personId ? { ...person, [name]: value } : person
-                ),
-            }));
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Form Data:', formData);
-        // Agrega lógica de envío de datos o integración con tu API aquí
-    };
+        try {
+          console.log('Form Data1:', formData);
+          const response = await createRespondent(formData);
+          console.log('Response:', response.data);
+
+        } catch (error) {
+          console.error('Error:', error.response?.data || error.message);
+        }
+      };
 
     return (
         <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2" onSubmit={handleSubmit}>
@@ -76,9 +62,8 @@ const Census = () => {
                         <input
                             type="checkbox"
                             id="children"
-                            name="additionalPeople"
-                            value="children"
-                            checked={formData.additionalPeople.includes('children')}
+                            name="additional_people"
+                            value={true}
                             onChange={(e) => handleChange(e)}
                         />
                         <label htmlFor="children"> Children, related or unrelated, such as newborn babies, grandchildren, or foster children</label>
@@ -92,14 +77,14 @@ const Census = () => {
             {/* Pregunta 3 */}
             <div className="-mx-3 md:flex mb-6">
                 <div className="md:w-full px-3">
-                    <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" htmlFor="housingType">
+                    <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" htmlFor="housing_type">
                         3. Is this house, apartment, or mobile home
                     </label>
                     <select
-                        id="housingType"
-                        name="housingType"
+                        id="housing_type"
+                        name="housing_type"
                         className="block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 rounded"
-                        value={formData.housingType}
+                        value={formData.housing_type}
                         onChange={(e) => handleChange(e)}
                     >
                         {/* Opciones de pregunta 3 */}
@@ -115,152 +100,23 @@ const Census = () => {
             {/* Pregunta 4 */}
             <div className="-mx-3 md:flex mb-6">
                 <div className="md:w-full px-3">
-                    <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" htmlFor="phoneNumber">
+                    <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" htmlFor="phone_number">
                         4. What is your telephone number?
                     </label>
                     <input
                         className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
-                        id="phoneNumber"
+                        id="phone_number"
                         type="tel"
                         placeholder="We will only contact you if needed for official Census Bureau business."
-                        name="phoneNumber"
-                        value={formData.phoneNumber}
+                        name="phone_number"
+                        value={formData.phone_number}
                         onChange={(e) => handleChange(e)}
                     />
                 </div>
             </div>
 
             {/* Pregunta 5 */}
-            {formData.people.map((person) => (
-                <div key={person.id}>
-                    <p className="text-lg font-semibold mb-2">Person {person.id}</p>
-                    <div className="-mx-3 md:flex mb-6">
-                        <div className="md:w-1/2 px-3 mb-6 md:mb-0">
-                            <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
-                                {`5. What is Person ${person.id}'s name? Print name below.`}
-                            </label>
-                            <input
-                                className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
-                                type="text"
-                                placeholder="First Name"
-                                name="firstName"
-                                value={person.firstName}
-                                onChange={(e) => handleChange(e, person.id)}
-                            />
-                        </div>
-                        <div className="md:w-1/2 px-3">
-                            <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">Last Name(s)</label>
-                            <input
-                                className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
-                                type="text"
-                                placeholder="Last Name"
-                                name="lastName"
-                                value={person.lastName}
-                                onChange={(e) => handleChange(e, person.id)}
-                            />
-                        </div>
-                    </div>
-
-                    {/* Pregunta 6 - Género */}
-                    <div className="-mx-3 md:flex mb-6">
-                        <div className="md:w-1/2 px-3 mb-6 md:mb-0">
-                            <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
-                                {`6. What is Person ${person.id}'s sex?`}
-                            </label>
-                            <select
-                                id="sex"
-                                name="sex"
-                                className="block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 rounded"
-                                value={person.sex}
-                                onChange={(e) => handleChange(e, person.id)}
-                            >
-                                <option value="">Select ONE option</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    {/* Pregunta 7 - Edad y Fecha de Nacimiento */}
-                    <div className="-mx-3 md:flex mb-6">
-                        <div className="md:w-1/2 px-3 mb-6 md:mb-0">
-                            <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">{`7. What is Person ${person.id}'s age and what is Person ${person.id}'s date of birth? For babies less than 1 year old, do not write the age in months. Write 0 as the age.`}</label>
-                            <div className="flex items-center mb-2">
-                                <input
-                                    className="appearance-none block w-1/4 bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mr-2"
-                                    type="number"
-                                    placeholder="Age"
-                                    name="age"
-                                    value={person.age}
-                                    onChange={(e) => handleChange(e, person.id)}
-                                />
-                                <span className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2 mr-2"> years</span>
-                            </div>
-                            <div className="-mx-1 flex items-center">
-                                <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2 mr-2">Age on April 1, 2023</label>
-                                <input
-                                    className="appearance-none block w-1/12 bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mr-2"
-                                    type="number"
-                                    placeholder="Month"
-                                    name="birthMonth"
-                                    value={person.birthMonth}
-                                    onChange={(e) => handleChange(e, person.id)}
-                                />
-                                <input
-                                    className="appearance-none block w-1/12 bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mr-2"
-                                    type="number"
-                                    placeholder="Day"
-                                    name="birthDay"
-                                    value={person.birthDay}
-                                    onChange={(e) => handleChange(e, person.id)}
-                                />
-                                <input
-                                    className="appearance-none block w-1/4 bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
-                                    type="number"
-                                    placeholder="Year of birth"
-                                    name="birthYear"
-                                    value={person.birthYear}
-                                    onChange={(e) => handleChange(e, person.id)}
-                                />
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Pregunta 8 - Origen Hispano, Latino o Español */}
-                    <div className="-mx-3 md:flex mb-6">
-                        <div className="md:w-1/2 px-3 mb-6 md:mb-0">
-                            <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
-                                {`8. Is Person ${person.id} of Hispanic, Latino, or Spanish origin?`}
-                            </label>
-                            <select
-                                id="hispanicOrigin"
-                                name="hispanicOrigin"
-                                className="block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 rounded"
-                                value={person.hispanicOrigin}
-                                onChange={(e) => handleChange(e, person.id)}
-                            >
-                                <option value="">Select ONE option</option>
-                                <option value="NotHispanic">No, not of Hispanic, Latino, or Spanish origin</option>
-                                <option value="Mexican">Yes, Mexican, Mexican Am., Chicano</option>
-                                <option value="PuertoRican">Yes, Puerto Rican</option>
-                                <option value="Cuban">Yes, Cuban</option>
-                                <option value="OtherHispanic">Yes, another Hispanic, Latino, or Spanish origin</option>
-                            </select>
-                            {person.hispanicOrigin === 'OtherHispanic' && (
-                                <input
-                                    type="text"
-                                    id="hispanicOriginText"
-                                    name="hispanicOriginText"
-                                    placeholder="Specify other Hispanic origin"
-                                    value={person.hispanicOriginText}
-                                    onChange={(e) => handleChange(e, person.id)}
-                                    className="mt-2 block appearance-none w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
-                                />
-                            )}
-                        </div>
-                    </div>
-                </div>
-            ))}
+            
             {/* Botón de envío */}
             <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
                 Submit

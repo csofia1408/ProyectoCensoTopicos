@@ -10,7 +10,7 @@ class PersonInline(admin.TabularInline):
     model = Person
 
 class CensusFormAdmin(admin.ModelAdmin):
-    inlines = [PersonInline]
+    model = CensusForm
 
 admin.site.register(CensusForm, CensusFormAdmin)
 admin.site.register(Person)

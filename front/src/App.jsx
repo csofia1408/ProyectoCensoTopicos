@@ -10,6 +10,8 @@ import Censo from './pages/Censo';
 import Census from './pages/CensusForm';
 import Contact from './pages/Contact';
 import LoginForm from './pages/LoginForm'
+import Form from './pages/Formulario'
+
 
 
 function App() {
@@ -28,6 +30,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/form" element={<Census />} />
+        <Route path="/formi" element={<Form />} />
       </Routes>
       <Toaster />
     </BrowserRouter>

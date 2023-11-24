@@ -131,7 +131,7 @@ CORS_ORIGIN_WHITELIST = ['http://localhost:5173']
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:19006", 
-    "exp://192.168.1.3:19000", 
+    "exp://192.168.1.5:19000", 
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True

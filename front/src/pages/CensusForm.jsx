@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import { getRespondent, createRespondent } from '../api/form.api'
+
+
+
 const Census = () => {
     const [formData, setFormData] = useState(
         {
@@ -26,6 +29,7 @@ const Census = () => {
           console.log('Form Data1:', formData);
           const response = await createRespondent(formData);
           console.log('Response:', response.data);
+          window.location.href = '/formp';
 
         } catch (error) {
           console.error('Error:', error.response?.data || error.message);
@@ -33,6 +37,15 @@ const Census = () => {
       };
 
     return (
+        <div>
+            
+        <div className="flex items-center justify-center h-screen bg-blue-400">
+        <div className="bg-white shadow-md rounded w-full md:w-1/3 mx-4 my-10 px-8 pt-6 pb-8 mb-4 flex flex-col">
+        <div className="mb-4 text-center text-2xl font-bold text-blue-500 ">
+      Census Form General Information
+    </div>
+    </div>
+  <div className=" shadow-md rounded w-full md:w-2/3 lg:w-1/2 px-8 pt-6 pb-8 mb-4 flex flex-col my-2 ">
         <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2" onSubmit={handleSubmit}>
             {/* Pregunta 1 */}
             <div className="-mx-3 md:flex mb-6">
@@ -118,10 +131,15 @@ const Census = () => {
             {/* Pregunta 5 */}
             
             {/* Botón de envío */}
+            
             <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
                 Submit
             </button>
+           
         </form>
+        </div>
+        </div>
+        </div>
     );
 };
 

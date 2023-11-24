@@ -1,0 +1,13 @@
+plaintext
+Copy code
+# Ignorar archivos generados por el sistema operativo
+Thumbs.db
+.DS_Store
+
+# Ignorar archivos de compilación y ejecutables
+*.pyc
+*.o
+
+# Ignorar carpetas y archivos específicos
+my_folder/
+secret.txt

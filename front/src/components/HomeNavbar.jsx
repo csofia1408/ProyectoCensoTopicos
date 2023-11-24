@@ -53,7 +53,7 @@
                 >
                 Contact
                 </NavLink>
-                <Link to="/login">
+                <Link to="/form">
                 <button
                     type="button"
                     onClick={handleFormSubmit}
